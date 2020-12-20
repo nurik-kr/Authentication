@@ -2,13 +2,14 @@ package kg.nurik.auth.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity
+@Entity //для сохр базе
 data class ProfileModel(
-//    @PrimaryKey
+    @PrimaryKey
     val id: Int,
     val email: String?,
     @SerializedName("role_code")
@@ -29,5 +30,5 @@ data class ProfileModel(
     @SerializedName("vk_link")
     var vkLink: String?,
     var avatar: String?,
-    val avatar2: String
+    val avatar2: String?
 ) : Parcelable

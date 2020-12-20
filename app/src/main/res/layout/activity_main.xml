@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16sp"
         android:hint="EMAIL"
+        android:text="rojsasha@gmail.com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16sp"
         android:hint="Password"
+        android:text="fifa11alex"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />

@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kg.nurik.auth.data.model.ProfileModel
 import kg.nurik.auth.data.repository.RetrofitRepositories
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NewVieModel(private val repository: RetrofitRepositories) : ViewModel() {
+class NewViewModel(private val repository: RetrofitRepositories) : ViewModel() {
 
-    val data = MutableLiveData<ProfileModel>()
+//    val data = MutableLiveData<ProfileModel>()
     val error = MutableLiveData<String>()
 
     init {
@@ -17,17 +18,18 @@ class NewVieModel(private val repository: RetrofitRepositories) : ViewModel() {
     }
 
     private fun loadUser() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                val result = repository.getProfile()
-                if (result.isSuccessful)
-                    data.postValue(result.body())
-                else error.postValue(result.message())
+                repository.loadProfile()
+//                if (result.isSuccessful)
+//                    data.postValue(result.body())
+//                else error.postValue(result.message())
             }.onFailure {
                 error.postValue(it.localizedMessage)
             }
         }
     }
 
+    fun getProfileModel() = repository.getProfile()
 
 }
